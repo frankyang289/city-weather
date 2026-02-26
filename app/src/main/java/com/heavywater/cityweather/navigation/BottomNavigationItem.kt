@@ -2,6 +2,9 @@ package com.heavywater.cityweather.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.heavywater.cityweather.feature.favourites.api.FavouritesNavKey
+import com.heavywater.cityweather.feature.currentweather.api.CurrentWeatherNavKey
+
 
 class BottomNavigationItem {
     data class BottomNavigationItem(
@@ -25,7 +28,7 @@ class BottomNavigationItem {
 
     val BOTTOM_NAV_ITEMS = mapOf(
         CurrentWeatherNavKey to CURRENT_WEATHER,
-        BookmarksNavKey to FAVOURITES
+        FavouritesNavKey to FAVOURITES
     )
 
 }

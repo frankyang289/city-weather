@@ -49,7 +49,25 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:navigation"))
+    implementation(projects.core.common)
+    implementation(projects.core.data)
+    implementation(projects.core.database)
+    implementation(projects.core.domain)
+    implementation(projects.core.model)
+    implementation(projects.core.navigation)
+    implementation(projects.core.network)
+    implementation(projects.core.screenshotTesting)
+    implementation(projects.core.ui)
+
+    implementation(projects.feature.addcity.api)
+    implementation(projects.feature.currentweather.api)
+    implementation(projects.feature.detailedview.api)
+    implementation(projects.feature.favourites.api)
+    implementation(projects.feature.addcity.impl)
+    implementation(projects.feature.currentweather.impl)
+    implementation(projects.feature.detailedview.impl)
+    implementation(projects.feature.favourites.impl)
+    implementation(projects.feature.settings.impl)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)

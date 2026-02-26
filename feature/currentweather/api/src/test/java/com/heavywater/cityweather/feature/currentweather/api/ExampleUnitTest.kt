@@ -1,4 +1,4 @@
-package com.heavywater.cityweather.feature.api
+package com.heavywater.cityweather.feature.currentweather.api
 
 import org.junit.Test
 
