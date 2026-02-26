@@ -1,4 +1,4 @@
-package com.heavywater.cityweather.feature.api
+package com.heavywater.cityweather.feature.currentweather.api
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -23,6 +23,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "CityWeather"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":core")
 include(":core:common")
@@ -49,3 +50,4 @@ include(":feature:favourites:api")
 include(":feature:favourites:impl")
 include(":feature:settings")
 include(":feature:settings:impl")
+include(":core:designsystem")

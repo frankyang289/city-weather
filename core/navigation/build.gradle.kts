@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -33,6 +35,8 @@ android {
 }
 
 dependencies {
+    api(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.lifecycle.viewModel.navigation3)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
