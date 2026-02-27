@@ -1,21 +1,19 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.wire)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.heavywater.cityweather.core.data"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    namespace = "com.heavywater.core.datastore"
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -33,12 +31,17 @@ android {
     }
 }
 
+wire {
+    kotlin {
+        android = true
+    }
+}
+
 dependencies {
     api(projects.core.model)
-    api(projects.core.datastore)
+    implementation(projects.core.common)
+    implementation(libs.datastore)
+    implementation(libs.wire.runtime)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 }
