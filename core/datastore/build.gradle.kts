@@ -1,15 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.wire)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.heavywater.cityweather.feature.currentweather.impl"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    namespace = "com.heavywater.core.datastore"
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 26
@@ -31,18 +29,19 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildFeatures {
-        compose = true
+}
+
+wire {
+    kotlin {
+        android = true
     }
 }
 
 dependencies {
-    api(projects.feature.settings.impl)
-    implementation(libs.material)
-    implementation(libs.androidx.runtime)
-    implementation(libs.androidx.compose.runtime.saveable)
-    implementation(libs.androidx.compose.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    api(projects.core.model)
+    implementation(projects.core.common)
+    implementation(libs.datastore)
+    implementation(libs.wire.runtime)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 }

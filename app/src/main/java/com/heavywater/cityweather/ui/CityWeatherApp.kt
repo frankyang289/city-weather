@@ -6,8 +6,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
-import androidx.compose.material3.adaptive.WindowAdaptiveInfo
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,8 +14,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation3.runtime.NavKey
 import com.heavywater.cityweather.feature.currentweather.api.CurrentWeatherNavKey
+import com.heavywater.cityweather.feature.currentweather.impl.CurrentWeatherScreen
 import com.heavywater.cityweather.feature.favourites.api.FavouritesNavKey
+import com.heavywater.cityweather.feature.favourites.impl.FavouritesScreen
 import com.heavywater.cityweather.navigation.BOTTOM_NAV_ITEMS
 import com.heavywater.core.designsystem.component.AppNavigationBar
 import com.heavywater.core.designsystem.component.AppNavigationBarItem
@@ -36,9 +37,8 @@ fun CityWeatherApp() {
 )
 internal fun CityWeatherApp(
     modifier: Modifier = Modifier,
-    windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
-    var selectedKey by remember { mutableStateOf(CurrentWeatherNavKey) }
+    var selectedKey: NavKey by remember { mutableStateOf(CurrentWeatherNavKey) }
 
     Scaffold(
         modifier = modifier,
@@ -47,7 +47,7 @@ internal fun CityWeatherApp(
                 BOTTOM_NAV_ITEMS.forEach { (key, item) ->
                     AppNavigationBarItem(
                         selected = selectedKey == key,
-                        onClick = { selectedKey = key as CurrentWeatherNavKey },
+                        onClick = { selectedKey = key },
                         icon = {
                             item.unselectedIcon?.let {
                                 Icon(imageVector = it, contentDescription = null)
@@ -66,10 +66,9 @@ internal fun CityWeatherApp(
             }
         }
     ) { paddingValues ->
-        // Your screen content based on selectedKey
         when (selectedKey) {
-//            CurrentWeatherNavKey -> CurrentWeatherScreen(Modifier.padding(paddingValues))
-//            FavouritesNavKey -> FavouritesScreen(Modifier.padding(paddingValues))
+            CurrentWeatherNavKey -> CurrentWeatherScreen(Modifier.padding(paddingValues))
+            FavouritesNavKey -> FavouritesScreen(Modifier.padding(paddingValues))
         }
     }
 }

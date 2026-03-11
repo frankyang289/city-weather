@@ -1,0 +1,7 @@
+package com.heavywater.cityweather.core.model
+
+enum class DarkThemeConfig {
+    FOLLOW_SYSTEM,
+    LIGHT,
+    DARK
+}
