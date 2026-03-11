@@ -25,7 +25,7 @@ sealed interface MainActivityUiState {
             }
     }
 
-    fun shouldKeepSplashScreen() = Loading
+    fun shouldKeepSplashScreen() = this is Loading
     val shouldDisableDynamicTheming: Boolean get() = true
     val shouldUseAndroidTheme: Boolean get() = false
     fun shouldUseDarkTheme(isSystemDarkTheme: Boolean) = isSystemDarkTheme

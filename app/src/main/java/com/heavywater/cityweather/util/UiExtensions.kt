@@ -21,6 +21,4 @@ fun ComponentActivity.isSystemInDarkTheme() = callbackFlow {
     addOnConfigurationChangedListener(listener)
 
     awaitClose { removeOnConfigurationChangedListener(listener) }
-}
-    .distinctUntilChanged()
-    .conflate()
+}.distinctUntilChanged().conflate()

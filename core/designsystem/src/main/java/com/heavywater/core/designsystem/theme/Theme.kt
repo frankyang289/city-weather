@@ -34,13 +34,12 @@ fun AppTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-
         else -> if (darkTheme) DarkColorScheme else LightColorScheme
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = AppTypography,  // define your own or use Material defaults
+        typography = AppTypography,
         content = content,
     )
 }
