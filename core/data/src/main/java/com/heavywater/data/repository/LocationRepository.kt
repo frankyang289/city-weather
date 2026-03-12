@@ -52,17 +52,22 @@ class LocationRepository @Inject constructor(
 
     private suspend fun getCityFromLocation(lat: Double, long: Double): String? {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            suspendCancellableCoroutine<String?> { continuation ->
+            suspendCancellableCoroutine { continuation ->
                 Geocoder(context).getFromLocation(lat, long, 1) { addresses ->
-                    continuation.resume(addresses.firstOrNull()?.locality)
+                    val address = addresses.firstOrNull()
+                    val city = address?.locality
+                        ?: address?.subAdminArea
+                        ?: address?.adminArea
+                    continuation.resume(city)
                 }
             }
         } else {
             withContext(Dispatchers.IO) {
                 @Suppress("DEPRECATION")
-                Geocoder(context).getFromLocation(lat, long, 1)
-                    ?.firstOrNull()
-                    ?.locality
+                val address = Geocoder(context).getFromLocation(lat, long, 1)?.firstOrNull()
+                address?.locality
+                    ?: address?.subAdminArea
+                    ?: address?.adminArea
             }
         }
     }
