@@ -25,7 +25,6 @@ import com.heavywater.core.designsystem.component.AppNavigationBarItem
 
 @Composable
 fun CityWeatherApp() {
-    //TODO: add theming and state logic
     CityWeatherApp(modifier = Modifier)
 }
 

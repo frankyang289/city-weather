@@ -46,6 +46,7 @@ datastore = "1.2.0"
 runtime = "1.10.3"
 runtimeVersion = "1.10.4"
 runtimeSaveable = "1.10.4"
+playServicesLocation = "21.3.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
@@ -106,6 +107,7 @@ wire-runtime = { group = "com.squareup.wire", name = "wire-runtime", version.ref
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtimeVersion" }
 androidx-compose-runtime-saveable = { group = "androidx.compose.runtime", name = "runtime-saveable", version.ref = "runtimeSaveable" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
