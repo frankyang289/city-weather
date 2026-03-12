@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    api(projects.core.ui)
     api(projects.feature.settings.impl)
     implementation(libs.material)
     implementation(libs.androidx.runtime)

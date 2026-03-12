@@ -24,6 +24,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.heavywater.cityweather.core.ui.FullScreenLoader
 import com.heavywater.cityweather.feature.settings.impl.SettingsDialog
 import com.heavywater.core.designsystem.icon.AppIcons
 
@@ -36,7 +37,7 @@ fun CurrentWeatherScreen(
     var showRationale by remember { mutableStateOf(false) }
     val currentCity by viewModel.currentCity.collectAsStateWithLifecycle()
     val context = LocalContext.current
-
+    val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
@@ -46,6 +47,8 @@ fun CurrentWeatherScreen(
             viewModel.fetchCurrentCity()
         }
     }
+
+    FullScreenLoader(isLoading = isLoading)
 
     LaunchedEffect(Unit) {
         val alreadyGranted = ActivityCompat.checkSelfPermission(
