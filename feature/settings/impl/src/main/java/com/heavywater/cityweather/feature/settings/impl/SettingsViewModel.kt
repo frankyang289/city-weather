@@ -15,9 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val userDataRepository: UserDataRepository,
+    private val userDataRepository: UserDataRepository
 ) : ViewModel() {
-
     val settingsUiState: StateFlow<SettingsUiState> =
         userDataRepository.userData
             .map { SettingsUiState.Success(it) }
