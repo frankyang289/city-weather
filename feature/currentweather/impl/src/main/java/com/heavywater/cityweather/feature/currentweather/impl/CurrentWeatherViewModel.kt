@@ -17,9 +17,17 @@ class CurrentWeatherViewModel @Inject constructor(
     private val _currentCity = MutableStateFlow<String?>(null)
     val currentCity: StateFlow<String?> = _currentCity.asStateFlow()
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+
     fun fetchCurrentCity() {
         viewModelScope.launch {
-            _currentCity.value = locationRepository.getCurrentLocation()
+            _isLoading.value = true
+            try {
+                _currentCity.value = locationRepository.getCurrentLocation()
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 }
